@@ -1,0 +1,7 @@
+zoneId,zoneName,gateId,currentDensityPercent,capacity,lastUpdated
+zone1,Concourse,gate1,45,1500,2026-07-15T12:00:00Z
+zone2,East Terrace,gate2,92,800,2026-07-15T12:00:00Z
+zone3,North Stand,gate3,30,1000,2026-07-15T12:00:00Z
+zone4,South Stand,gate4,15,1200,2026-07-15T12:00:00Z
+zone5,VIP Box,gate5,88,200,2026-07-15T12:00:00Z
+zone6,West Terrace,gate6,60,900,2026-07-15T12:00:00Z
