@@ -53,7 +53,7 @@ export default function Dashboard() {
 
       if (!alertActiveRef.current || changed) {
         try {
-          const response = await fetch('http://localhost:3001/api/reasoning', {
+          const response = await fetch(`${import.meta.env.VITE_API_URL}/api/reasoning`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ zones: zoneArray, exceedingZones })
