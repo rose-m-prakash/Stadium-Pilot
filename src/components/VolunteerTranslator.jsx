@@ -78,18 +78,24 @@ export default function VolunteerTranslator() {
 
   return (
     <div className="translator-panel">
-      <h3>Volunteer Translator</h3>
+      <h2>Volunteer Translator</h2>
       <div className="translator-controls">
+        <label className="sr-only" htmlFor="translatorMessage">Message to translate</label>
         <textarea
+          id="translatorMessage"
           value={message}
           onChange={(event) => setMessage(event.target.value)}
           placeholder="Type a message for translation"
           rows={4}
+          aria-label="Message to translate"
         />
         <div className="translator-action-row">
+          <label className="sr-only" htmlFor="languageSelect">Select target language</label>
           <select
+            id="languageSelect"
             value={targetLanguage}
             onChange={(event) => setTargetLanguage(event.target.value)}
+            aria-label="Select target language"
           >
             {languageOptions.map((lang) => (
               <option key={lang.value} value={lang.value}>

@@ -53,11 +53,7 @@ export default function Dashboard() {
 
       if (!alertActiveRef.current || changed) {
         try {
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/api/reasoning`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ zones: zoneArray, exceedingZones })
-          })
+          
           const result = await response.json()
           setReasoning(result)
           setAlertActive(true)
@@ -110,8 +106,8 @@ export default function Dashboard() {
       <h2 className="section-title">Live Stadium Zone Dashboard</h2>
 
       {reasoning && (
-        <div className="reasoning-alert">
-          <div className="reasoning-header">⚠️ CROWD DENSITY ALERT</div>
+        <div className="reasoning-alert" role="alert" aria-live="assertive">
+          <div className="reasoning-header"><span aria-hidden="true">⚠️</span> CROWD DENSITY ALERT</div>
           <div className="reasoning-content">
             <div className="reasoning-field">
               <strong>Recommended Action:</strong> Redirect to {reasoning.decision}
@@ -126,27 +122,31 @@ export default function Dashboard() {
         </div>
       )}
 
-      <div className="zones-grid">
-        {zones.map((zone, idx) => {
-          const density = zone.currentDensityPercent || 0
-          const statusColor = getStatusColor(density)
-          const statusLabel =
-            density < 60 ? 'Good' : density < 80 ? 'Caution' : 'Critical'
+      <section aria-label="Zone density overview">
+        <div className="zones-grid">
+          {zones.map((zone, idx) => {
+            const density = zone.currentDensityPercent || 0
+            const statusColor = getStatusColor(density)
+            const statusLabel =
+              density < 60 ? 'Good' : density < 80 ? 'Caution' : 'Critical'
 
-          return (
-            <div
-              key={zone.zoneId || idx}
-              className="zone-card"
-              style={{ borderLeftColor: statusColor }}
-            >
-              <div className="zone-header">
-                <h3>{zone.zoneName}</h3>
-                <div
-                  className="status-indicator"
-                  style={{ backgroundColor: statusColor }}
-                  title={statusLabel}
-                />
-              </div>
+            return (
+              <div
+                key={zone.zoneId || idx}
+                className="zone-card"
+                style={{ borderLeftColor: statusColor }}
+              >
+                <div className="zone-header">
+                  <h3>{zone.zoneName}</h3>
+                  <div className="status-indicator-wrapper">
+                    <div
+                      className="status-indicator"
+                      style={{ backgroundColor: statusColor }}
+                      title={statusLabel}
+                    />
+                    <span className="sr-only">Status: {statusLabel}</span>
+                  </div>
+                </div>
 
               <div className="zone-content">
                 <div className="zone-stat">
@@ -172,7 +172,8 @@ export default function Dashboard() {
             </div>
           )
         })}
-      </div>
+        </div>
+      </section>
 
       <VolunteerTranslator />
 

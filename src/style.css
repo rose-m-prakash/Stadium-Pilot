@@ -9,6 +9,27 @@ body {
   color: #e2e8f0;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #7dd3fc;
+  outline-offset: 3px;
+}
+
 .dashboard {
   max-width: 1240px;
   margin: 0 auto;
@@ -170,6 +191,12 @@ body {
   margin: 0;
   color: #f8fafc;
   font-size: 1.1rem;
+}
+
+.status-indicator-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .status-indicator {
