@@ -69,10 +69,10 @@ export default function Dashboard() {
         } catch (error) {
           console.error('Error fetching reasoning:', error)
           setReasoning({
-            decision: 'Error',
-            reasoning: 'Could not connect to reasoning service',
-            action: 'Contact administrator'
-          })
+  decision: 'unavailable',
+  reasoning: 'Could not connect to reasoning service',
+  action: 'Contact administrator'
+})
           setAlertActive(true)
           alertActiveRef.current = true
         }
