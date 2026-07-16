@@ -58,6 +58,9 @@ export default function Dashboard() {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ zones: zoneArray, exceedingZones })
           })
+          if (!response.ok) {
+            throw new Error(`Reasoning service returned ${response.status}`)
+          }
           const result = await response.json()
           setReasoning(result)
           setAlertActive(true)
